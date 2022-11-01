@@ -1,0 +1,162 @@
+EXERCISE 3-1 OREILLY
+SELECT actor_id, first_name, last_name FROM actor;
+
+EXERCISE 3-2 OREILLY
+SELECT actor_id,first_name,last_name FROM actor
+WHERE last_name = 'WILLIAMS' OR last_name = 'DAVIS'
+
+EXERCISE 3-3 OREILLY
+SELECT DISTINCT customer_id
+ -> FROM rental
+ -> WHERE date(rental_date) = '2005-07-05';
+ 
+EXERCISE 3-4 OREILLY 
+MariaDB [sakila]> select c.email, r.return_date
+    -> from customer c
+    -> inner join rental r
+    -> on c.customer_id = r.customer_id
+    -> where date(r.rental_date) = '2005-06-14'
+    -> order by 2 desc;
+
+Note : desc 	  = Terbesar ke terkecil
+	   esc  	  = terkecil ke Terbesar
+	   inner join = masuk ke dalam table 
+	   on 		  = mencari nilai yang sama dengan coloum yang di cari
+	   where 	  = mencari apa yang ingin dimasukan ke database
+	   order 	  = urutan yang ingin di tampilkan ke database 
+
+
++------------+-------------+--------+--------------------+
+| payment_id | customer_id | amount | date(payment_date) |
++------------+-------------+--------+--------------------+
+| 101 | 4 | 8.99 | 2005-08-18 |
+| 102 | 4 | 1.99 | 2005-08-19 |
+| 103 | 4 | 2.99 | 2005-08-20 |
+| 104 | 4 | 6.99 | 2005-08-20 |
+| 105 | 4 | 4.99 | 2005-08-21 |
+| 106 | 4 | 2.99 | 2005-08-22 |
+| 107 | 4 | 1.99 | 2005-08-23 |
+| 108 | 5 | 0.99 | 2005-05-29 |
+| 109 | 5 | 6.99 | 2005-05-31 |
+| 110 | 5 | 1.99 | 2005-05-31 |
+| 111 | 5 | 3.99 | 2005-06-15 |
+| 112 | 5 | 2.99 | 2005-06-16 |
+| 113 | 5 | 4.99 | 2005-06-17 |
+| 114 | 5 | 2.99 | 2005-06-19 |
+| 115 | 5 | 4.99 | 2005-06-20 |
+| 116 | 5 | 4.99 | 2005-07-06 |
+| 117 | 5 | 2.99 | 2005-07-08 |
+| 118 | 5 | 4.99 | 2005-07-09 |
+| 119 | 5 | 5.99 | 2005-07-09 |
+| 120 | 5 | 1.99 | 2005-07-09 |
++------------+-------------+--------+--------------------+
+
+EXERCISE 4-1 OREILLY
+PAYMENT IDs 101 and 107
+
+EXERCISE 4-2 OREILLY
+PAYMENT IDs 108,
+
+EXERCISE 4-3 OREILLY
+SELECT amount
+FROM payment
+WHERE amount IN (1.98,7.98,9.98)
+
+EXERCISE 4-4 OREILLY
+SELECT first_name, last_name
+ -> FROM customer
+ -> WHERE last_name LIKE '_A%W%';
+ 
+ 
+ NOTE : F% 	  = String yang berawalan dengan F
+		%t 	  = String yang berakhiran dengan t 
+		%bas% = String yang ditengahnya ada 'bas'
+		__t_  = 4 huruf string yang di huruf ke 3 ada t 
+		____________ = 11 - character string dengan dash di posisi  4 dan 7 
+		_ 			 = hanya 1
+		%			 = semua nomor character termasuk 0
+
+Exercise 5-1
+-	-> SELECT c.first_name, c.last_name, a.address, ct.city
+    -> FROM customer c
+    -> INNER JOIN address a
+    -> ON c.address_id = a.address_id
+    -> INNER JOIN city ct
+    -> ON a.city_id = ct.city_id
+    -> WHERE a.district = 'California';
+Exercise 5-2
+	MariaDB [sakila]-> SELECT f.title
+	-> FROM film f
+	-> INNER JOIN film_actor fa
+	-> ON f.film_id = fa.film_id
+    -> INNER JOIN actor a
+    -> ON fa.actor_id = a.actor_id
+    -> WHERE a.first_name = 'JOHN';
+
+Exercise 5-3
+	MariaDB [sakila]> SELECT a1.address addr1, a2.address addr2, a1.city_id
+    -> FROM address a1
+    -> INNER JOIN address a2
+    -> WHERE a1.city_id = a2.city_id
+    -> AND a1.address_id <> a2.address_id;
+	
+	
+EXERCISE 6-1
+1. A union B = {L M N O P Q R S T}
+2. A union all B = {L M N O P P Q R S T}
+3. A intersect B = {P}
+4. A except B = {L M N O}
+
+EXERCISE 6-2 
+	-> SELECT first_name, last_name
+    -> FROM actor
+    -> WHERE last_name LIKE 'L%'
+    -> UNION
+    -> SELECT first_name, last_name
+    -> FROM customer
+    -> WHERE last_name LIKE 'L%';
+
+EXERCISE 6-3 
+MariaDB [sakila]> SELECT first_name, last_name
+    -> FROM actor
+    -> WHERE last_name LIKE 'L%'
+    -> UNION
+    -> SELECT first_name, last_name
+    -> FROM customer
+    -> WHERE last_name LIKE 'L%'
+    -> ORDER BY last_name;
+	
+NOTE: Union 	= Angka atau huruf yang berada di dalam array yang sama di jadikan satu
+	  Union ALL = Mengambil semua yang berada di dalam Array
+	  Intersect = Mengambil nilai yang sama dalam sebuah array 
+	  Execept 	= Mengambi angka yang tidak ada di axcept sebelah 
+	  
+	  
+	  
+EXERCISE 7-1
+-> SELECT SUBSTRING('Please find the substring in this string',17 ,9);
+
+EXERCISE 7-2
+-> SELECT ABS(-25.76823), SIGN(-25.76823), ROUND(-25.76823, 2);
+
+EXERCISE 7-3
+-> SELECT EXTRACT(MONTH FROM CURRENT_DATE());
+
+NOTE: %M = Month name (January to December)
+	  %m = Month numeric (01 to 12)
+	  %d = Day numeric (01 to 31)
+	  %j = Day of year (001 to 366)
+	  %W = Weekday name (Sunday to Saturday)
+	  %Y = Year, four-digit numeric
+	  %y = Year, two-digit numeric
+	  %H = Hour (00 to 23)
+	  %h = Hour (01 to 12)
+	  %i = Minutes (00 to 59)
+	  %s = Seconds (00 to 59)
+	  %f = Microseconds (000000 to 999999)
+	  %p = A.M. or P.M.
+
+EXERCISE 8-1
+
+EXERCISE 8-2
+EXERCISE 8-3
