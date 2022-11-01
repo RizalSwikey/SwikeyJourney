@@ -193,3 +193,38 @@
 # print(is_rightangled(3, 4, 12))
 
 #12. Extend the above program so that the sides can be given to the function in any order.
+#     if a > b and a > c:
+#         hypotenuse = a
+#         leg1 = b
+#         leg2 = c
+#     elif b > a and b > c:
+#         hypotenuse = b
+#         leg1 = a
+#         leg2 = c
+#     else:
+#         hypotenuse = c
+#         leg1 = a
+#         leg2 = b
+
+#     if leg1 ** 2 + leg2 ** 2 == hypotenuse ** 2:
+#         return True
+#     else:
+#         return False
+
+# print(is_rightangled(5, 3, 4))
+
+# 13. If you’re intrigued by why floating point arithmetic is sometimes inaccurate, on a piece of
+# paper, divide 10 by 3 and write down the decimal result. You’ll find it does not terminate,
+# so you’ll need an infinitely long sheet of paper. The representation of numbers in computer
+# memory or on your calculator has similar problems: memory is finite, and some digits may
+# have to be discarded. So small inaccuracies creep in. Try this script:
+
+# import math
+# a = math.sqrt(2.0)
+# print(a, a*a)
+# print(a*a == 2.0)
+
+# import math
+# a = math.sqrt(2.0)
+# print(a, a*a)
+# print(a*a == 2.0)
