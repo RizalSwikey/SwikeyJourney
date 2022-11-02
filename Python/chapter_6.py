@@ -64,16 +64,6 @@
 
 
 #Exercise
-# 1. The four compass points can be abbreviated by single-letter strings as “N”, “E”, “S”, and “W”.
-# Write a function turn_clockwise that takes one of these four compass points as its parameter,
-# and returns the next compass point in the clockwise direction. Here are some tests that should
-# pass:
-# 1 test(turn_clockwise("N") == "E")
-# 2 test(turn_clockwise("W") == "N")
-# You might ask “What if the argument to the function is some other value?” For all other cases,
-# the function should return the value None:
-# 1 test(turn_clockwise(42) == None)
-# 2 test(turn_clockwise("rubbish") == None)
 import sys
 
 def turn_clockwise(direct):
@@ -87,9 +77,6 @@ def turn_clockwise(direct):
         return 'W'
     else:
         return
-# 2. Write a function day_name that converts an integer number 0 to 6 into the name of a day.
-# Assume day 0 is “Sunday”. Once again, return None if the arguments to the function are not
-# valid. Here are some tests that should pass:
 
 def day_name(x):
     days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']
@@ -98,8 +85,6 @@ def day_name(x):
     else:
         return
 
-# 3. Write the inverse function day_num which is given a day name, and returns its number:
-
 def day_num(day):
     days = {'SUNDAY':0, 'MONDAY':1, 'TUESDAY': 2, 'WEDNESDAY': 3, 'THURSDAY': 4, 'FRIDAY': 5, 'SATURDAY': 6}
     if day in days : 
@@ -107,23 +92,10 @@ def day_num(day):
     else :
         return
 
-# 4. Write a function that helps answer questions like ‘“Today is Wednesday. I leave on holiday
-# in 19 days time. What day will that be?”’ So the function must take a day name and a delta
-# argument — the number of days to add — and should return the resulting day name:
-
-# 5. Can your day_add function already work with negative deltas? For example, -1 would be
-# yesterday, or -7 would be a week ago:
-
 def day_add(day, delta):
     days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']
     if delta > 7 or delta < 7 :
         return days [(day_num(day) + delta % 7 )% 7]
-
-# 6. Write a function days_in_month which takes the name of a month, and returns the number of
-# days in the month. Ignore leap years:
-# 1 test(days_in_month("February") == 28)
-# 2 test(days_in_month("December") == 31)
-# If the function is given invalid arguments, it should return None.
 
 def day_in_month(month):
     month = {'January': 31, 'February':28, 'March': 31, 'April': 30, 'May': 31, 'June': 30, 'July': 31, 'August': 31, 'September': 30, 'October': 31, 'November': 30, 'December': 31}
@@ -132,18 +104,29 @@ def day_in_month(month):
     else:
         return
 
-# 7. Write a function to_secs that converts hours, minutes and seconds to a total number of seconds.
-# Here are some tests that should pass:
-
 def to_secs (hours,minutes,seconds):
     return int ((hours ** 3600) + (minutes*60) +seconds)
 
-# 8. Extend to_secs so that it can cope with real values as inputs. It should always return an integer
-# number of seconds (truncated towards zero):
-
 def hours_in(secs):
     return secs // 3600
+
 def minutes_in(secs):
     return secs // 60 % 60
+
 def seconds_in(secs):
     return secs - (to_secs(hours_in(secs), 0, 0) + to_secs (0, minutes_in(secs) , 0))
+
+def compare(a, b):
+    if a > b :
+        return 1
+    elif a == b:
+        return 0
+    else:
+        return
+
+def hypotenuse(leg1,leg2):
+    return ((leg1**2) + (leg2**2)) ** 0.5
+
+def slope(x1,y1,x2,y2):
+    return (y1 - y2) / (x2-x1)
+
