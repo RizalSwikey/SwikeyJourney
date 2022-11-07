@@ -64,7 +64,6 @@
 
 
 #Exercise
-from imp import is_frozen_package
 import sys
 
 def turn_clockwise(direct):
