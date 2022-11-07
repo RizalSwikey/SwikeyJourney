@@ -168,7 +168,7 @@ def test(did_pass):
     else :
         msg = 'Test at line {0} failed.'.format(linenum)
     print (msg)
-
+    
 def test_suite():
     """ Run the suite of test for code in this module. """
     test(turn_clockwise("N") == "E")
